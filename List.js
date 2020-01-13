@@ -18,21 +18,29 @@ export default class List extends Component {
   }
 
   handleChange(e) {
+      // declare a variable to hold current list
       let currentList = [];
+      // declare a variable to hold searched list
       let newList = [];
 
+      // if the search box is not empty
       if (e.target.value != "") {
+          // assign the original list to current list
           currentList = this.props.items;
+          // filter out the searched item from the original list and assign to newList
           newList = currentList.filter(item => {
-              const lcItem = item.toLowerCase();
-              const filter = e.target.value.toLowerCase();
-              return lcItem.includes(filter);
+              // change the current item to lowercase
+              const currItem = item.toLowerCase();
+              // change the searched item to lowercase
+              const filteredItem = e.target.value.toLowerCase();
+              // check if the currItem contains the searched term. If yes, it will be added to newList
+              return currItem.includes(filteredItem);
           });
       } else {
-          // If the search bar is empty, set newList to original task list
+          // If the search bar is empty, set newList to the original list
           newList= this.props.items;
       }
-      // Set the filtered state based on what our rules added to newList
+      // Set the filtered state to what's returned by newList
       this.setState({filtered: newList});
   }
 
