@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import 'bulma/bulma';
+import List from './List';
 
 export default class App extends Component {
     constructor(props) {
@@ -51,16 +52,7 @@ export default class App extends Component {
             <div className="content">
                 <div className="container">
                     <section className="section">
-                        <ul>
-                            {
-                                list.map(item => (
-                                    <li key = {item}>
-                                        {item} &nbsp;
-                                        <span className = "delete" onClick = {() => this.removeItem(item)}></span>
-                                    </li>
-                                ))
-                            }
-                        </ul>
+                    <List items={this.state.list} delete={this.removeItem} />
                     </section>
                 </div>
                 <section className="section">
